@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    //Layout = "Pippo";
+    ViewData["Title"] = "Home page";
+}
+
+<!--<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>-->
+
+
+<h1>Oggi è il @Model.CurrentDate</h1>
+
+
+
+<ul>
+    @foreach (var p in Model.List)
+    {
+        <li>
+            <strong>@p.Id</strong>
+            @p.Name
+            <a asp-page="/Products/Details"
+               asp-route-id="@p.Id"
+               asp-area=""
+               class="btn btn-primary">vai al dettaglio</a>
+        </li>
+    }
+</ul>
