@@ -9,5 +9,6 @@ namespace WebExample.Data
     public interface IDataAccess
     {
         IEnumerable<Product> GetProducts();
+        Product GetProductById(int id);
     }
 }

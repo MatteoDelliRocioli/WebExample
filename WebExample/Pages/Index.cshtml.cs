@@ -11,6 +11,8 @@ namespace WebExample.Pages
 {
     public class IndexModel : PageModel
     {
+        //TODO: scegliere tabella, obiettivo-> index deve farmi vedere l'elenco di oggetti; la pagina di dettaglio-> query solo con quell'evento dati solo di quel prodotto
+
         public string CurrentDate { get; set; }
         public IEnumerable<Product> List { get; set; }
 
@@ -24,25 +26,6 @@ namespace WebExample.Pages
         public void OnGet() //richiesta visualizzazione pagina
         {
             CurrentDate = DateTime.Now.ToShortDateString();
-
-            //var temp = new List<string>();
-            //for (int i =0; i < 10; i++)
-            //{
-            //    temp.Add($"Prodotto {i}");
-            //}
-            //List = temp;
-
-            /*var temp = new List<Product>();
-            for (int i = 0; i < 10; i++)
-            {
-                temp.Add(new Product
-                {
-                    Id = i, 
-                    Name = $"Prodotto {i}"
-                });
-            }
-            List = temp;*/
-
             List = this._data.GetProducts();
         }
 

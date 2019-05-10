@@ -14,17 +14,23 @@
 <h1>Oggi è il @Model.CurrentDate</h1>
 
 
+<div class="text-md-left " style="overflow: scroll; height:500px;">
+    <ul>
+        @foreach (var p in Model.List)
+        {
+            <li>
+                <div class="col-md-6 col-md-offset-1" >
+                    <strong style="text-indent: 5em;">@p.Id</strong>
+                    @p.Name
 
-<ul>
-    @foreach (var p in Model.List)
-    {
-        <li>
-            <strong>@p.Id</strong>
-            @p.Name
-            <a asp-page="/Products/Details"
-               asp-route-id="@p.Id"
-               asp-area=""
-               class="btn btn-primary">vai al dettaglio</a>
-        </li>
-    }
-</ul>
+                    <div class="text-right align-top">
+                        <a asp-page="/Products/Details"
+                           asp-route-id="@p.Id"
+                           asp-area=""><btn class="btn btn-primary">vai al dettaglio</btn></a>
+                    </div>
+                    <canvas style="height:1px;width:1000px ;background-color:black;"></canvas>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
