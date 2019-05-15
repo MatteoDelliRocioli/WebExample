@@ -1,0 +1,55 @@
+﻿@page
+@model WebExample.Pages.Products.InsertModel
+@{
+    ViewData["Title"] = "Insert";
+}
+
+<h1>Insert</h1>
+
+<form method="post">
+
+    <label asp-for="Input.Code"></label>
+    <input asp-for="Input.Code" />
+    <span asp-validation-for="Input.Code" class="text-danger"></span>
+    <br />
+    <label asp-for="Input.Name"></label>
+    <input asp-for="Input.Name" />
+    <span asp-validation-for="Input.Name" class="text-danger"></span>
+    <br />
+    <label asp-for="Input.Price"></label>
+    <input asp-for="Input.Price" />
+    <span asp-validation-for="Input.Price" class="text-danger"></span>
+    <br />
+
+    <button type="submit">Salva</button>
+
+    <div asp-validation-summary="All"></div>
+</form>
+
+<button type="button" id="btnShow">Show Message</button>
+
+<form method="post" asp-page="Insert" asp-page-handler="Subscribe"> <!--questo metodo chiama il metodo onpostsubscibe della pagina Insert-->
+    <h2>Inscriviti alla NewsLetter</h2>
+
+    <input type="email" name="mail"/>
+
+    <button type="submit">Registrati</button>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $("#btnShow").on("click", function () { //ajax calling :)
+            $.ajax({
+                url: "@Url.Page("Insert", "GetMessage")",//fare generare l'url, in modo che non sia hard coded, come per <a> asp-route-id, asp-page
+                method: "POST",
+                dataType: "application/JSON"
+            }).then(function data){
+                alert(data.message);
+            }, function () {
+                alert("errore");
+            }
+        });
+    </script>
+}

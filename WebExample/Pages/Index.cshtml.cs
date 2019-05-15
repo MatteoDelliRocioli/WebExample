@@ -11,7 +11,9 @@ namespace WebExample.Pages
 {
     public class IndexModel : PageModel
     {
-        //TODO: scegliere tabella, obiettivo-> index deve farmi vedere l'elenco di oggetti; la pagina di dettaglio-> query solo con quell'evento dati solo di quel prodotto
+        //DONE: scegliere tabella, obiettivo-> index deve farmi vedere l'elenco di oggetti; la pagina di dettaglio-> query solo con quell'evento dati solo di quel prodotto 
+
+        //TODO: Fare inserimento e poi fare modifica
 
         public string CurrentDate { get; set; }
         public IEnumerable<Product> List { get; set; }
