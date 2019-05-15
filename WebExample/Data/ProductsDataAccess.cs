@@ -9,11 +9,11 @@ using WebExample.Models;
 
 namespace WebExample.Data
 {
-    public class DataAccess : IDataAccess
+    public class ProductsDataAccess : IProductsDataAccess
     {
         private string _connectionString { get; set; }
 
-        public DataAccess(IConfiguration config)
+        public ProductsDataAccess(IConfiguration config)
         {
             this._connectionString = config.GetConnectionString("cs");
         }

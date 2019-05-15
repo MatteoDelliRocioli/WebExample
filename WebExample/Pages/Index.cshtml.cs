@@ -16,9 +16,9 @@ namespace WebExample.Pages
         public string CurrentDate { get; set; }
         public IEnumerable<Product> List { get; set; }
 
-        private IDataAccess _data;
+        private IProductsDataAccess _data;
 
-        public IndexModel(IDataAccess data)
+        public IndexModel(IProductsDataAccess data)
         {
             _data = data;
         }

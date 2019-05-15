@@ -1,0 +1,22 @@
+﻿@page 
+@model WebExample.Pages.Customers.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<div class="text-md-left " style="overflow: scroll; height:500px;">
+    @foreach (var c in Model._customers)
+    {
+        <p style="display:inline-block">@c.FirstName @c.Id</p>
+        <a 
+        asp-page="/Customers/Details"
+        asp-route-id="@c.Id"
+        asp-area=""><btn class="btn btn-primary">Customer Details</btn></a>
+        <canvas style="height:1px;width:1000px ;background-color:black;"></canvas>
+        <br />
+    }
+</div>
+
+

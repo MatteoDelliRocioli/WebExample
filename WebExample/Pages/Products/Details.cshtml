@@ -1,5 +1,4 @@
-﻿@*@@page "{id}"*@
-@page
+﻿@page "{id}"
 @model WebExample.Pages.Products.DetailsModel
 @{
     ViewData["Title"] = "Details";
@@ -7,6 +6,6 @@
 
 <h1 class="text-md-left col-3" style="background-color:Highlight; border-radius:15px">Details</h1>
 <div class="align-self-md-stretch text-md-center" style="background-color:antiquewhite; border-radius:15px">
-    <p>Product Id: @Model.product.Id</p>
-    <p>Product Name: @Model.product.Name</p>
+    <p>Product Id: @Model._product.Id</p>
+    <p>Product Name: @Model._product.Name</p>
 </div>

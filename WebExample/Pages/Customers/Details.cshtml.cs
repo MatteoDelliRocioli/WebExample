@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,25 +7,24 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebExample.Data;
 using WebExample.Models;
 
-namespace WebExample.Pages.Products
+namespace WebExample.Pages.Customers
 {
     public class DetailsModel : PageModel
     {
         /// <summary>
-        /// Single Product Detail object
+        /// Single Customer Detail object
         /// </summary>
-        public Product _product { get; set; }
+        public Customer _customer { get; set; }
 
-        private readonly IProductsDataAccess _data;
+        private ICustomersDataAccess _data;
 
-        public DetailsModel(IProductsDataAccess data)
+        public DetailsModel(ICustomersDataAccess data)
         {
             _data = data;
         }
-
         public void OnGet(int id)
         {
-            _product = this._data.GetProductById(id);
+            _customer = this._data.GetCustomerById(id);
         }
     }
 }

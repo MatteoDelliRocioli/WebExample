@@ -6,9 +6,9 @@ using WebExample.Models;
 
 namespace WebExample.Data
 {
-    public interface IDataAccess
+    public interface ICustomersDataAccess
     {
-        IEnumerable<Product> GetProducts();
-        Product GetProductById(int id);
+        IEnumerable<Customer> GetAllCustomers();
+        Customer GetCustomerById(int id);
     }
 }

@@ -1,0 +1,12 @@
+﻿@page
+@model WebExample.Pages.Customers.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Customer Details</h1>
+
+<p>Customer Id: @Model._customer.Id</p>
+<p>Customer Name: @Model._customer.FirstName</p>
+<p>Customer Surname: @Model._customer.LastName</p>
+<p>Customer Company Name: @Model._customer.CompanyName</p>
