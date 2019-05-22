@@ -112,12 +112,14 @@ namespace WebExample.Data
                                SET[Name] = @Name
                                   ,[ProductNumber] = @ProductNumber
                                   ,[StandardCost] = @StandardCost
-                                  ,[ListPrice] = @ListPriceint,>
+                                  ,[ListPrice] = @ListPriceint
                                   ,[SellStartDate] = @SellStartDate
                              WHERE [Id] = @id";*/
             var queryUpdate = @"
                             UPDATE [SalesLT].[Product]
                                SET [Name] = @Name
+                                  ,[ProductNumber] = @Code
+                                  ,[ListPrice] = @ListPrice
                              WHERE [ProductID] = @id";
 
             using (var connection = new SqlConnection(_connectionString))

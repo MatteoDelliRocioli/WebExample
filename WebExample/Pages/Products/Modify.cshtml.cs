@@ -29,7 +29,7 @@ namespace WebExample.Pages.Products
 
             [Display(Name = "Prezzo")]
             [DataType(DataType.Currency)]
-            public decimal? Price { get; set; }
+            public decimal? ListPrice { get; set; }
 
             [Display(Name = "PrezzoStandard")]
             [DataType(DataType.Currency)]
@@ -40,9 +40,8 @@ namespace WebExample.Pages.Products
             public DateTime SellStartDate { get; set; }
         }
 
-        public ProductModifyInput _ModifyObject { get; set; }
-
-        public Product _product { get; set; }
+        [BindProperty]
+        public ProductModifyInput Input { get; set; }
 
         public IProductsDataAccess _data { get; set; }
 
@@ -53,16 +52,28 @@ namespace WebExample.Pages.Products
 
         public void OnGet(int id)
         {
-            _product = this._data.GetProductById(id);
-            _ModifyObject = new ProductModifyInput();
+            var product = this._data.GetProductById(id);
+            Input = new ProductModifyInput
+            {
+                Id = id,
+                Name = product.Name,
+                Code = product.Code,
+                ListPrice = product.ListPrice,
+                SellStartDate = product.SellStartDate,
+                StandardCost = product.StandardCost
+            };
         }
 
         public IActionResult OnPost(int id)
         {
-            //_product = this._data.GetProductById(id);
-            var modifiedProduct = new Product(_ModifyObject.Name); //TODO: vedere col prof
-            modifiedProduct.Id = id;
-            _data.ModifyProduct(_ModifyObject);
+            Input = new ProductModifyInput
+            {
+                Id = id,
+                Name = Input.Name,
+                Code = Input.Code,
+                ListPrice = Input.ListPrice
+            };
+            _data.ModifyProduct(Input);
             return RedirectToPage("/Index");
         }
     }
