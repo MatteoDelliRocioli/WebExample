@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using WebExample.Models;
+using static WebExample.Pages.Products.InsertModel;
+using static WebExample.Pages.Products.ModifyModel;
 
 namespace WebExample.Data
 {
@@ -64,6 +66,63 @@ namespace WebExample.Data
                 var product = connection.QueryFirstOrDefault<Product>(querySelectById, 
                     new {id});
                 return product;
+            }
+        }
+
+        public void InsertProduct(Product product)
+        {
+            var queryInsert = @"
+                    INSERT INTO [SalesLT].[Product]
+                                ([Name]
+                                ,[ProductNumber]
+                                ,[ListPrice] 
+                                ,[StandardCost]
+                                ,[SellStartDate])
+                         VALUES
+                               (@Name,
+                                @ProductNumber,
+                                @ListPrice,
+                                @StandardCost,
+                                @SellStartDate)";
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Execute(queryInsert, product);
+            }
+        }
+
+        public void ModifyProduct(ProductModifyInput product)
+        {
+         /*   var queryInsert = @"
+                    INSERT INTO [SalesLT].[Product]
+                                ([Name]
+                                ,[ProductNumber]
+                                ,[ListPrice] 
+                                ,[StandardCost]
+                                ,[SellStartDate])
+                         VALUES
+                               (@Name,
+                                @ProductNumber,
+                                @ListPrice,
+                                @StandardCost,
+                                @SellStartDate)";*/
+
+            /*var queryUpdate = @"
+                            UPDATE[SalesLT].[Product]
+                               SET[Name] = @Name
+                                  ,[ProductNumber] = @ProductNumber
+                                  ,[StandardCost] = @StandardCost
+                                  ,[ListPrice] = @ListPriceint,>
+                                  ,[SellStartDate] = @SellStartDate
+                             WHERE [Id] = @id";*/
+            var queryUpdate = @"
+                            UPDATE [SalesLT].[Product]
+                               SET [Name] = @Name
+                             WHERE [ProductID] = @id";
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.ExecuteScalar(queryUpdate, product);
             }
         }
     }

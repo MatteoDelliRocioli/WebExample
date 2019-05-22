@@ -20,6 +20,14 @@
     <input asp-for="Input.Price" />
     <span asp-validation-for="Input.Price" class="text-danger"></span>
     <br />
+    <label asp-for="Input.StandardCost"></label>
+    <input asp-for="Input.StandardCost" />
+    <span asp-validation-for="Input.StandardCost" class="text-danger"></span>
+    <br />
+    <label asp-for="Input.SellStartDate"></label>
+    <input asp-for="Input.SellStartDate" />
+    <span asp-validation-for="Input.SellStartDate" class="text-danger"></span>
+    <br />
 
     <button type="submit">Salva</button>
 
@@ -45,11 +53,11 @@
                 url: "@Url.Page("Insert", "GetMessage")",//fare generare l'url, in modo che non sia hard coded, come per <a> asp-route-id, asp-page
                 method: "POST",
                 dataType: "application/JSON"
-            }).then(function data){
+            }).then(function data(){
                 alert(data.message);
             }, function () {
                 alert("errore");
-            }
+            })
         });
     </script>
 }

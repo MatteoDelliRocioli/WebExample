@@ -5,14 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebExample.Data;
+using WebExample.Models;
 
 namespace WebExample.Pages.Products
 {
-    [IgnoreAntiforgeryToken] //altra soluzione lo vado a recuperare e inserire nell'oggewtto di cui faccio la Post
+    [IgnoreAntiforgeryToken] //altra soluzione lo vado a recuperare e inserire nell'oggetto di cui faccio la Post
     public class InsertModel : PageModel
     {
+        private readonly IProductsDataAccess _data;
+
         [BindProperty] //invece del parametro dentro le api
         public ProductInsertInput Input { get; set; }
+
+        public InsertModel(IProductsDataAccess data)
+        {
+            _data = data;
+        }
 
         public class ProductInsertInput
         {
@@ -29,6 +38,14 @@ namespace WebExample.Pages.Products
             [Display(Name = "Prezzo")]
             [DataType(DataType.Currency)]
             public decimal? Price { get; set; }
+
+            [Display(Name = "PrezzoStandard")]
+            [DataType(DataType.Currency)]
+            public decimal? StandardCost { get; set; }
+
+            [Display(Name = "Prima data utile per l'acquisto")]
+            [DataType(DataType.DateTime)]
+            public DateTime SellStartDate { get; set; }
         }
 
         public void OnGet()
@@ -47,6 +64,8 @@ namespace WebExample.Pages.Products
             if (ModelState.IsValid)
             {
                 //salvo su db
+                var product = new Product(Input.Name, Input.Code, Input.Price, Input.StandardCost, Input.SellStartDate);
+                _data.InsertProduct(product);
                 return RedirectToPage("/Index");
             }
 

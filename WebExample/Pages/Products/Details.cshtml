@@ -9,3 +9,6 @@
     <p>Product Id: @Model._product.Id</p>
     <p>Product Name: @Model._product.Name</p>
 </div>
+<div style="background-color:antiquewhite; border-radius:15px">
+    <a class="btn btn-dark text-md-left" asp-area="" asp-page="/Products/Modify" asp-route-id="@Model._product.Id">Modify this product</a>
+</div>

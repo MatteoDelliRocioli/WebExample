@@ -1,0 +1,18 @@
+﻿@page  "{id}"
+@model WebExample.Pages.Products.ModifyModel
+@{
+    ViewData["Title"] = "Modify";
+}
+
+<h1>Modify</h1>
+
+<form method="post">
+    <label asp-for="_product.Name"></label>
+    <input asp-for="_product.Name" />
+    <span asp-validation-for="_product.Name" class="text-danger"></span>
+    <br />
+
+    <button type="submit">Salva</button>
+
+    <div asp-validation-summary="All"></div>
+</form>

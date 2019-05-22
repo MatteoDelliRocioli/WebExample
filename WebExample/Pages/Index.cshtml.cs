@@ -35,5 +35,10 @@ namespace WebExample.Pages
         {
 
         }
+
+        public IActionResult OnPostGoToAddProducts()
+        {
+            return RedirectToPage("/Products/Insert");
+        }
     }
 }
